@@ -12,3 +12,15 @@ body {
     background: #fff;
 }
 
+#card-placeholder {
+    display: none;
+}
+.card-wrapper {
+    padding: 0;
+}
+.card {
+    margin: 0 1rem 1rem;
+}
+.card-img-top {
+    max-width: 100%;
+}
