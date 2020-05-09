@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: content-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #222;
+    background: #fff;
+    padding-bottom: 2rem;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 0px 5px 0px rgba(0,0,0,.2);
+    padding: 1rem .5rem;
+}
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: #ff385c !important;
+}
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+#summary {
+    font-size: 24px;
+    margin: 1rem 0 2rem;
+}
+
+#accommodations {
+    margin-bottom: 2rem;
+}
+
+#card-placeholder {
+    display: none;
+}
+.card-wrapper {
+    padding: 0;
+}
+.card {
+    margin: 0 1rem 1rem;
+}
+.card-img-top {
+    max-width: 100%;
+}
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+.card-text {
+    font-size: 14px; 
+    margin-bottom: 1em;
+    min-height: 2.4em;
+}
+.card-price {
+    text-align: right;
+}
+.card-price .currency, .card-price .value {
+    font-weight: 700;
+}
+
+.pagination {
+    margin-bottom: .5rem;
+}
+
+.page-item {
+    margin-right: .2rem;
+}
+.page-item .page-link {
+    display: inline-block;
+    width: 1em;
+    padding: 0.45em;
+    border: 0;
+    font-weight: 500;
+    text-align: center;
+    color:#222;
+}
+.page-item .page-link:hover {
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.page-item .page-link:focus {
+    box-shadow: none;
+}
+.page-item.active .page-link {
+    background: #222;
+    border-radius: 50%;
+    line-height: 1;
+}
+.page-item.active .page-link:hover {
+    cursor: default;
+    text-decoration: none;
+}
+
+.pagination-description {
+    text-align: center;
+    font-size: 13px;
+}
