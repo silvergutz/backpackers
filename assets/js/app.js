@@ -6,6 +6,11 @@ window.onload = function() {
   var itemsPerPage = 10;
 
   loadAccommodations(1, itemsPerPage);
+
+  document.getElementById('filter-form').addEventListener('submit', e => {
+    e.preventDefault();
+    loadAccommodations(1, itemsPerPage);
+  });
 }
 
 async function loadAccommodations(page, perPage) {
@@ -26,7 +31,6 @@ async function loadAccommodations(page, perPage) {
     let totalItems = items.total;
     let pages = items.pages;
 
-    console.log(page, pages, perPage, totalItems);
     updatePages(page, pages, perPage, totalItems);
 
     if (!totalItems) {
@@ -40,7 +44,11 @@ async function loadAccommodations(page, perPage) {
   
       const placeholder = document.getElementById('card-placeholder');
       const list = placeholder.parentNode;
-  
+
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+      const days = calculateStayDays(checkin, checkout);
+      
       items.data.map(item => {
         let card = placeholder.cloneNode(true);
         card.removeAttribute('id');
@@ -58,6 +66,9 @@ async function loadAccommodations(page, perPage) {
         let price = card.querySelector('.card-price > .unit > .value'); 
         price.textContent = item.price;
   
+        let total = card.querySelector('.card-price > .total > .value');
+        total.textContent = item.price * (days || 1);
+
         list.append(card);
       });
     }
@@ -126,6 +137,13 @@ function updatePages(current, pages, perPage, total) {
     let offset = perPage * (current - 1);
     description.textContent = `Exibindo ${offset + 1}-${Math.ceil(total, offset + perPage)} de ${total}`;
   }
+}
+
+function calculateStayDays(checkin, checkout) {
+  var dateIn = new Date(checkin);
+  var dateOut = new Date(checkout);
+  var timeDiff = Math.abs(dateOut.getTime() - dateIn.getTime());
+  return Math.ceil(timeDiff / (1000 * 3600 * 24));
 }
 
 async function fetchItemsFromApi(page, perPage) {
