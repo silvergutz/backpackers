@@ -97,21 +97,19 @@ function updatePages(current, pages, perPage, total) {
       let item = document.createElement('li');
       item.classList.add('page-item');
 
-      console.log(i, current);
+      let a = document.createElement('a');
+      a.classList.add('page-link');
+      a.textContent = i;
 
       if (i === current) {
         item.classList.add('active');
+      } else {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const page = parseInt(item.textContent);
+          loadAccommodations(page, perPage);
+        });
       }
-
-      let a = document.createElement('a');
-      a.classList.add('page-link');
-      a.textContent = i < 10 ? `0${i}` : i;
-      a.href = '#';
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const page = parseInt(item.textContent);
-        loadAccommodations(page, perPage);
-      });
 
       item.append(a);
       ul.append(item);
@@ -126,7 +124,7 @@ function updatePages(current, pages, perPage, total) {
     }
 
     let offset = perPage * (current - 1);
-    description.textContent = `${offset + 1}-${Math.ceil(total, offset + perPage)} de ${total}`;
+    description.textContent = `Exibindo ${offset + 1}-${Math.ceil(total, offset + perPage)} de ${total}`;
   }
 }
 
