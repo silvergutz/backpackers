@@ -12,7 +12,6 @@ body {
     line-height: 1.2;
     color: #222;
     background: #fff;
-    padding-bottom: 2rem;
 }
 
 .navbar {
@@ -105,5 +104,15 @@ body {
 
 .pagination-description {
     text-align: center;
+    font-size: 13px;
+}
+
+#page-footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+#page-footer > div {
+    padding: 1rem;
+    border-top: 1px solid #ddd;
     font-size: 13px;
 }
