@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: content-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #222;
+    background: #fff;
+}
+
+#card-placeholder {
+    display: none;
+}
+.card-wrapper {
+    padding: 0;
+}
+.card {
+    margin: 0 1rem 1rem;
+}
+.card-img-top {
+    max-width: 100%;
+}
