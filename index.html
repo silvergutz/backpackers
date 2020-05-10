@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" sizes="38x38" href="./assets/images/favicon.png">
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,8 +15,8 @@
 <body>
     <div id="main">
         <head id="page-header">
-            <nav class="navbar sticky-top navbar-expand-lg navbar-light">
-                <div class="container-xl">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+                <div class="container">
                     <a class="navbar-brand" href="./">
                         <img src="./assets/images/backpackers-logo.png" width="28">
                         Backpackers
@@ -36,53 +38,61 @@
         </head>
 
         <main class="page-content">
-            <div class="container-xl">
-                <div class="row">
-                    <section class="primary col order-lg-first order-sm-last">
-                        <div id="summary"></div>
-        
-                        <div id="accommodations">
-                            <div class="row">
-                                <div id="card-placeholder" class="card-wrapper col-lg-6 col-sm-12">
-                                    <div class="card">
-                                        <img class="card-img-top" src="https://via.placeholder.com/300x270.jpg?text=Backpackers" alt="">
-                                        <div class="card-body">
-                                            <h3 class="card-title">Nome da acomodação 3</h3>
-                                            <div class="card-text">Detalhes da acomodação</div>
-                                            <div class="card-price">
-                                                <div class="unit">
-                                                    <span class="currency">R$</span> 
-                                                    <span class="value">89,50</span>
-                                                    <span class="value-desc"> / noite</span>
-                                                </div>
-                                                <div class="total">
-                                                    <span class="total-desc">Total de </span>
-                                                    <span class="currency">R$</span>
-                                                    <span class="value">179,00</span>
-                                                </div>
-                                            </div>
+            <section class="primary order-lg-first order-sm-last">
+                <div id="summary"></div>
+
+                <div id="accommodations">
+                    <div class="row">
+                        <div id="card-placeholder" class="card-wrapper col-lg-6 col-sm-12">
+                            <div class="card">
+                                <img class="card-img-top" src="https://via.placeholder.com/300x270.jpg?text=Backpackers" alt="">
+                                <div class="card-body">
+                                    <h3 class="card-title">Nome da acomodação 3</h3>
+                                    <div class="card-text">Detalhes da acomodação</div>
+                                    <div class="card-price">
+                                        <div class="unit">
+                                            <span class="currency">R$</span> 
+                                            <span class="value">89,50</span>
+                                            <span class="value-desc"> / noite</span>
+                                        </div>
+                                        <div class="total">
+                                            <span class="total-desc">Total de </span>
+                                            <span class="currency">R$</span>
+                                            <span class="value">179,00</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-        
-                        <nav id="accommodation-pagination" aria-label="Paginação">
-                            
-                        </nav>
-                    </section>
-
-                    <aside class="secondary col-lg-4 col-sm-12 order-lg-last order-sm-first">
-                        Aqui vai o MAPA com os pins
-                    </aside>
+                    </div>
                 </div>
-            </div>
+
+                <nav id="accommodation-pagination" aria-label="Paginação">
+                    
+                </nav>
+            </section>
+
+            <aside class="secondary order-lg-last order-sm-first">
+                <div id="map"></div>
+            </aside>
         </main>
+
+        <footer id="page-footer">
+            <div class="container-xl">
+                Desenvolvido com 🖤 por 
+                «
+                <a href="https://linkedin.com/in/tiagovergutz">
+                    Tiago Vergutz
+                </a>
+                »
+            </div>
+        </footer>
     </div>
     
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="./assets/js/app.js"></script>    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvDEFifFuiRKCmtA-zhSQGm2QCK7Nj9H0&callback=initMap"></script>
+    <script src="./assets/js/app.js"></script>
 </body>
 </html>
