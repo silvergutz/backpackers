@@ -200,11 +200,23 @@ function setSummaryMessage(message) {
 
 function initMap() {
   // The location of the user
-  var center = {lat: -25.344, lng: 131.036};
+  var center = {lat: -23.51289, lng: -46.65698};
   var zoom = 2;
 
   // The map, centered at user location
   map = new google.maps.Map(document.getElementById('map'), { zoom, center });
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      map.setCenter(pos);
+    });
+  }
 }
 
 function updateMap() {
