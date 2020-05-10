@@ -1,6 +1,8 @@
 'use strict';
 
-const APIURL = 'https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72';
+// const APIURL = 'https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72';
+const APIURL = 'assets/data/sample.json';
+var map, currentItems = [];
 
 window.onload = function() {
   var itemsPerPage = 10;
@@ -49,9 +51,13 @@ async function loadAccommodations(page, perPage) {
       const checkout = document.getElementById('checkout').value;
       const days = calculateStayDays(checkin, checkout);
       
+      // update global variable
+      currentItems = items.data;
+
+      // Update cards content
       items.data.map(item => {
         let card = placeholder.cloneNode(true);
-        card.removeAttribute('id');
+        card.id = `card-${item.id}`;
   
         let image = card.querySelector('.card-img-top');
         image.src = item.photo.replace(/aki_policy=.*/gi, 'aki_policy=x_medium');
@@ -69,8 +75,22 @@ async function loadAccommodations(page, perPage) {
         let total = card.querySelector('.card-price > .total > .value');
         total.textContent = item.price * (days || 1);
 
+        let latlng = { lat: item.lat, lng: item.lng };
+        card.dataset.location = latlng;
+        card.addEventListener('mouseover', e => {
+          card.classList.add('over');
+          if (map) {
+            map.panTo(latlng);
+          }
+        });
+        card.addEventListener('mouseout', e => {
+          card.classList.remove('over');
+        });
+
         list.append(card);
       });
+
+      updateMap();
     }
   } catch(e) {
     console.error(e);
@@ -176,4 +196,35 @@ async function fetchItemsFromApi(page, perPage) {
 
 function setSummaryMessage(message) {
   document.getElementById('summary').textContent = message;
+}
+
+function initMap() {
+  // The location of the user
+  var center = {lat: -25.344, lng: 131.036};
+  var zoom = 2;
+
+  // The map, centered at user location
+  map = new google.maps.Map(document.getElementById('map'), { zoom, center });
+}
+
+function updateMap() {
+  if (currentItems && currentItems.length) {
+    currentItems.map(item => {
+      let { lat, lng } = item;
+      const marker = new google.maps.Marker({ position: { lat, lng }, map });
+      marker.addListener('click', () => {
+        const elm = document.getElementById(`card-${item.id}`);
+
+        window.scrollTo({
+          top: elm.offsetTop,
+          behavior: 'smooth'
+        });
+
+        elm.classList.add('over');
+        setTimeout(() => {
+          elm.classList.remove('over');
+        }, 2000);
+      });
+    });
+  }
 }
