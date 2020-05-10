@@ -220,6 +220,8 @@ function initMap() {
 }
 
 function updateMap() {
+  var infowindow = new google.maps.InfoWindow();
+
   if (currentItems && currentItems.length) {
     currentItems.map(item => {
       let { lat, lng } = item;
@@ -236,6 +238,12 @@ function updateMap() {
         setTimeout(() => {
           elm.classList.remove('over');
         }, 2000);
+
+        infowindow.setContent('<div class="iw">' +
+                              ` <div class="title">${item.property_type}</div>` +
+                              ` <div class="price"><b>R$ ${item.price}</b></div>` +
+                              '</div>');
+        infowindow.open(map, marker);
       });
     });
   }
